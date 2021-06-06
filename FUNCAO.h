@@ -141,16 +141,25 @@ void InsereValorListaSimpEncadeada(ListaSimpEncadeada *L, int x)
 //////FUN��O BUSCA LISTA ALTERAR###############################################################################
 NoListaSimp *busca_LISTA(ListaSimpEncadeada *L, int x)
 {
-	NoListaSimp *aux = (*L).inicio;
-	if (aux != NULL )
+	NoListaSimp *p = (*L).inicio;
+
+	int inter = 0;
+	while (p != NULL)
 	{
-		if (aux->prox > x)
+		if (p->valor == x)
+		{
+			printf("NUMERO: %d - BUSCA: %d - Quantidade de interacoes: %d \n", x, p->valor, inter);
+			break;
+		}
+		else
 		{
 			contador_busca_lista++;
-			busca_LISTA((*aux).prox, x);
-		}else{
-			contador_busca_lista++;
+			inter++;
+			if(inter == 20000){
+				contador_busca_lista -= 20000;
+			}
 		}
+		p = p->prox;
 	}
 }
 //
@@ -211,7 +220,7 @@ void busca_AVL(NO_ARVORE *arvore, int num)
 		{
 			//printf("\nNumero encontrado %d\n", arvore->valor);
 			enc++; //INCREMENTA CONTADOR DE NUMEROS ENCONTRADOS
-			//contador_busca_AVL++;
+				   //contador_busca_AVL++;
 		}
 	}
 	else
