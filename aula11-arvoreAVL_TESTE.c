@@ -39,6 +39,7 @@ int main() {
 	for (int i = 0; i < 20000; i++)
 	{
 		busca_LISTA(&lista, vetor_busca[i]);
+	
 	}
 
 	printf("Contador_INTERACAO_INSERCAO_LISTA: %d\n", contador_insercao_lista);
