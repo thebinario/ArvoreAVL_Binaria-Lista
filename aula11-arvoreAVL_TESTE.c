@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+//Kevin Viana Siqueira Pantoja
+
 #include "FUNCAO.h"
 
 
