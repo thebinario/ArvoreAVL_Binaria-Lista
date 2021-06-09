@@ -1,7 +1,13 @@
-//Kevin Viana Siqueira Pantoja
-
+/*
+* Autores
+* Abimael de Oliveira Ferreira - 03247347
+* Ernesto Nunes da Costa Junior - 03148925
+* En
+* Kevin Viana Siqueira Pantoja - 03242176
+**/
 #include "FUNCAO.h"
 
+                                                                                                                         
 
 int main() {
 	NO_ARVORE *avl = NULL;
@@ -11,6 +17,7 @@ int main() {
     
     iniciaLista(&lista);
 
+	//gerando numeros aleatorios
 	srand(time(NULL));
     for (i=0 ; i<20000 ; i++) {
         vetor_insercao[i] = rand() % 40000;
@@ -20,12 +27,14 @@ int main() {
         vetor_busca[i] = rand() % 40000;
     }
 
+	// Inserção de dados
     for (i=0 ; i<20000 ; i++) {
         avl = insercao_AVL(avl,vetor_insercao[i]);
         arvore = insercao_ARVORE(arvore,vetor_insercao[i]);
         InsereValorListaSimpEncadeada(&lista, vetor_insercao[i]);
     }    
     
+	// Fazendo Busca no vetor
     for (int i = 0; i < 20000; i++)
 	{
 		busca_AVL(avl, vetor_busca[i]);
@@ -42,12 +51,8 @@ int main() {
 	
 	}
 
-	printf("Contador_INTERACAO_INSERCAO_LISTA: %d\n", contador_insercao_lista);
-	printf("Contador_BUSCA_LISTA: %d\n", contador_busca_lista);	
-	
-
    
-/*	
+	// Saida dos resultados
 	printf("\n");
 	printf("Contador_INTERACAO_INSERCAO_AVL: %d\n", contador_insercao_AVL);
 	printf("Contador_BUSCA_AVL: %d\n", contador_busca_AVL);
@@ -65,6 +70,6 @@ int main() {
 	printf("altura_ARVORE: %d\n", altura(arvore));
 
 
-*/
+
 
 }

@@ -14,6 +14,7 @@ int enc = 0;
 int valor_busca_arvore = 0;
 int valor_busca_avl = 0;
 
+//Estrutura que gerencia as Arvores AVL e Binaria.
 typedef struct no_arvore
 {
 	int valor;
@@ -144,8 +145,10 @@ NoListaSimp *busca_LISTA(ListaSimpEncadeada *L, int x)
 	NoListaSimp *p = (*L).inicio;
 
 	int inter = 0;
+	//faz a busca ate o ultimo item
 	while (p != NULL)
-	{
+	{	
+		//verifica se o valor foi encontrado
 		if (p->valor == x)
 		{
 			printf("NUMERO: %d - BUSCA: %d - Quantidade de interacoes: %d \n", x, p->valor, inter);
@@ -155,6 +158,7 @@ NoListaSimp *busca_LISTA(ListaSimpEncadeada *L, int x)
 		{
 			contador_busca_lista++;
 			inter++;
+			//subtrai valores de numeros nao encontrados
 			if(inter == 20000){
 				contador_busca_lista -= 20000;
 			}
@@ -233,8 +237,8 @@ void busca_AVL(NO_ARVORE *arvore, int num)
 void busca_ARVORE(NO_ARVORE *arvore, int num)
 {
 
-	//contador_busca_arvore++;
 
+	//verifica se a aravore esta vazia
 	if (arvore != NULL)
 	{
 		if (arvore->valor > num)
@@ -242,15 +246,10 @@ void busca_ARVORE(NO_ARVORE *arvore, int num)
 			contador_busca_arvore++;
 			busca_ARVORE(arvore->esq, num);
 		}
-		else if (arvore->valor < num)
+		if (arvore->valor < num)
 		{
 			contador_busca_arvore++;
 			busca_ARVORE(arvore->dir, num);
-		}
-		else
-		{
-			//NUMERO ENCONTRADO
-			//contador_busca_arvore++;
 		}
 	}
 	else
