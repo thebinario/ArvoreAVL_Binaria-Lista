@@ -2,7 +2,7 @@
 * Autores
 * Abimael de Oliveira Ferreira - 03247347
 * Ernesto Nunes da Costa Junior - 03148925
-* En
+* Enzo Ramon Rodrigues Almeida Cunha - 03242255
 * Kevin Viana Siqueira Pantoja - 03242176
 **/
 #include "FUNCAO.h"
