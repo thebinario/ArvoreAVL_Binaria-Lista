@@ -27,7 +27,7 @@ int main() {
         vetor_busca[i] = rand() % 40000;
     }
 
-	// Inserção de dados
+	// Insers�o de dados
     for (i=0 ; i<20000 ; i++) {
         avl = insercao_AVL(avl,vetor_insercao[i]);
         arvore = insercao_ARVORE(arvore,vetor_insercao[i]);
@@ -47,20 +47,18 @@ int main() {
 	
 	for (int i = 0; i < 20000; i++)
 	{
-		busca_LISTA(&lista, vetor_busca[i]);
-	
+		busca_LISTA(&lista, vetor_busca[i]);	
 	}
-
    
 	// Saida dos resultados
 	printf("\n");
-	printf("Contador_INTERACAO_INSERCAO_AVL: %d\n", contador_insercao_AVL);
+	printf("Contador_INSERCAO_AVL: %d\n", contador_insercao_AVL);
 	printf("Contador_BUSCA_AVL: %d\n", contador_busca_AVL);
 	printf("\n");
-	printf("Contador_INTERACAO_INSERCAO_ARVORE: %d\n", contador_insercao_arvore);
+	printf("Contador_INSERCAO_ARVORE: %d\n", contador_insercao_arvore);
 	printf("Contador_BUSCA_ARVORE: %d\n", contador_busca_arvore);	
 	printf("\n");
-	printf("Contador_INTERACAO_INSERCAO_LISTA: %d\n", contador_insercao_lista);
+	printf("Contador_INSERCAO_LISTA: %d\n", contador_insercao_lista);
 	printf("Contador_BUSCA_LISTA: %d\n", contador_busca_lista);	
 	printf("\n");		
 	printf("total de numeros encontrado: %d\n",enc);
@@ -68,8 +66,6 @@ int main() {
 	printf("\n");		
 	printf("altura_AVL: %d\n", altura(avl));
 	printf("altura_ARVORE: %d\n", altura(arvore));
-
-
 
 
 }

@@ -49,13 +49,13 @@ void inserirNoListaSimp(NoListaSimp **ATUAL, int x)
 	NoListaSimp *NOVO = (NoListaSimp *)malloc(sizeof(NoListaSimp));
 	(*NOVO).valor = x;
 
-	//Inserir elemento no inï¿½cio da lista.
+	//Inserir elemento no inicio da lista.
 	if (*ATUAL == NULL)
 	{
 		*ATUAL = NOVO;
 		(**ATUAL).prox = NULL;
 	}
-	//Inserir elemento nas demais posiï¿½ï¿½es da lista
+	//Inserir elemento nas demais posições da lista
 	else
 	{
 		NoListaSimp *PROX = (**ATUAL).prox;
@@ -78,13 +78,14 @@ void imprimirListaSimpEncadeada(ListaSimpEncadeada L)
 	printf("\n");
 }
 
-//Buscar posiï¿½ï¿½o na lista L para inserir o valor x quando L nï¿½o estï¿½ vazia e x nï¿½o ï¿½ o menor valor de L.
+//Buscar posição na lista L para inserir o valor x quando L nï¿½o estï¿½ vazia e x nï¿½o ï¿½ o menor valor de L.
 NoListaSimp *buscaPosicaoInsercao(ListaSimpEncadeada L, int x)
 {
 	NoListaSimp *aux = L.inicio;
 
 	while ((*aux).prox != NULL)
 	{
+		contador_insercao_lista++;
 		if ((*aux).prox->valor > x)
 		{
 			return aux;
@@ -119,27 +120,28 @@ void InsereValorListaSimpEncadeada(ListaSimpEncadeada *L, int x)
 	if ((*L).inicio == NULL)
 	{
 		inserirNoListaSimp(&(*L).inicio, x);
-		contador_insercao_lista++;
+	//	contador_insercao_lista++;
 	}
 	else
 	{
 		//Inserir um valor x que ï¿½ o menor valor da lista.
+		contador_insercao_lista++;
 		if (x < (*L).inicio->valor)
 		{
 			insereInicioLista(&(*L).inicio, x);
-			contador_insercao_lista++;
+			
 		}
-		//Inserir um valor x nas demais posiï¿½ï¿½es da lista.
-		else
+		//Inserir um valor x nas demais posições da lista.
+		contador_insercao_lista++;
+		if (x > (*L).inicio->valor)
 		{
 			NoListaSimp *p = buscaPosicaoInsercao(*L, x);
-			inserirNoListaSimp(&p, x);
-			contador_insercao_lista++;
+			inserirNoListaSimp(&p, x);			
 		}
 	}
 }
 
-//////FUNï¿½ï¿½O BUSCA LISTA ALTERAR###############################################################################
+//////FUNÇÃO BUSCA  ELEMENTOS NA LISTA
 NoListaSimp *busca_LISTA(ListaSimpEncadeada *L, int x)
 {
 	NoListaSimp *p = (*L).inicio;
@@ -149,27 +151,25 @@ NoListaSimp *busca_LISTA(ListaSimpEncadeada *L, int x)
 	while (p != NULL)
 	{	
 		//verifica se o valor foi encontrado
+		contador_busca_lista++;
 		if (p->valor == x)
 		{
-			printf("NUMERO: %d - BUSCA: %d - Quantidade de interacoes: %d \n", x, p->valor, inter);
+		//	printf("NUMERO: %d - BUSCA: %d - Quantidade de interacoes: %d \n", x, p->valor, inter);
 			break;
 		}
-		else
-		{
-			contador_busca_lista++;
+		contador_busca_lista++;
+		if(p->valor != x){
+			
 			inter++;
 			//subtrai valores de numeros nao encontrados
-			if(inter == 20000){
-				contador_busca_lista -= 20000;
-			}
+		//	if(inter == 20000){
+		//		contador_busca_lista -= 20000;
+		//	}
 		}
 		p = p->prox;
 	}
 }
-//
-//
-//
-//##########################################################
+
 
 NO_ARVORE *remocao(NO_ARVORE *raiz, int x);
 
@@ -210,17 +210,18 @@ void busca_AVL(NO_ARVORE *arvore, int num)
 
 	if (arvore != NULL)
 	{
+		contador_busca_AVL++;
 		if (arvore->valor > num)
-		{
-			contador_busca_AVL++;
+		{			
 			busca_AVL(arvore->esq, num);
 		}
-		else if (arvore->valor < num)
-		{
-			contador_busca_AVL++;
+		contador_busca_AVL++;
+		if(arvore->valor < num){			
+						
 			busca_AVL(arvore->dir, num);
-		}
-		else
+			
+		} 		
+		else if(arvore->valor == num)
 		{
 			//printf("\nNumero encontrado %d\n", arvore->valor);
 			enc++; //INCREMENTA CONTADOR DE NUMEROS ENCONTRADOS
@@ -237,18 +238,19 @@ void busca_AVL(NO_ARVORE *arvore, int num)
 void busca_ARVORE(NO_ARVORE *arvore, int num)
 {
 
-
 	//verifica se a aravore esta vazia
 	if (arvore != NULL)
 	{
+		contador_busca_arvore++;
 		if (arvore->valor > num)
 		{
-			contador_busca_arvore++;
+			
 			busca_ARVORE(arvore->esq, num);
 		}
+		contador_busca_arvore++;
 		if (arvore->valor < num)
 		{
-			contador_busca_arvore++;
+			
 			busca_ARVORE(arvore->dir, num);
 		}
 	}
@@ -357,15 +359,14 @@ NO_ARVORE *insercao_AVL(NO_ARVORE *raiz, int x)
 	}
 	else
 	{
-
+		contador_insercao_AVL++;
 		if (x < (*raiz).valor)
-		{
-			contador_insercao_AVL++;
+		{			
 			(*raiz).esq = insercao_AVL((*raiz).esq, x);
 		}
-		else if (x > (*raiz).valor)
-		{
-			contador_insercao_AVL++;
+		contador_insercao_AVL++;
+		if (x > (*raiz).valor)
+		{			
 			(*raiz).dir = insercao_AVL((*raiz).dir, x);
 		}
 		else
@@ -391,16 +392,17 @@ NO_ARVORE *insercao_ARVORE(NO_ARVORE *raiz, int x)
 	}
 	else
 	{
+		contador_insercao_arvore++;
 		if (x < (*raiz).valor)
-		{
-			contador_insercao_arvore++;
+		{			
 			(*raiz).esq = insercao_ARVORE((*raiz).esq, x);
 		}
-		else if (x > (*raiz).valor)
-		{
-			contador_insercao_arvore++;
+		contador_insercao_arvore++;
+		if (x > (*raiz).valor)
+		{			
 			(*raiz).dir = insercao_ARVORE((*raiz).dir, x);
 		}
+				
 		else
 		{
 			//	printf("Elemento jÃ¡ existente na arvore\n");
